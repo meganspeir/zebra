@@ -19,9 +19,27 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configur
 ###
 
 @app.route('/')
-def home():
-    """Render website's home page."""
-    return render_template('home.html')
+def main():
+    return render_template('index.html')
+
+    # Set secret key: remember to change this to your live secret key in production
+    # See your keys here https://manage.stripe.com/account
+    stripe.api_key = "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
+
+    # Get the credit card details submitted by the form
+    token = request.POST['stripeToken']
+
+    # Create the charge on Stripe's servers - this will charge the user's card
+    try:
+        charge = stripe.Charge.create(
+            amount=1000,  # amount in cents, again
+            currency="usd",
+            card=token,
+            description="payinguser@example.com"
+        )
+    except stripe.CardError, e:
+      # The card has been declined
+        pass
 
 
 @app.route('/about/')
