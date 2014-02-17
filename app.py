@@ -8,6 +8,7 @@ This file creates your application.
 
 import os
 from flask import Flask, render_template, request, redirect, url_for
+import stripe
 
 app = Flask(__name__)
 
@@ -28,6 +29,7 @@ def main():
 
     # Get the credit card details submitted by the form
     token = request.POST['stripeToken']
+    email = request.GET['stripeEmail']
 
     # Create the charge on Stripe's servers - this will charge the user's card
     try:
@@ -35,7 +37,7 @@ def main():
             amount=1000,  # amount in cents, again
             currency="usd",
             card=token,
-            description="payinguser@example.com"
+            description=email
         )
     except stripe.CardError, e:
       # The card has been declined
