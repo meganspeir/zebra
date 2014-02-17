@@ -34,7 +34,7 @@ def main():
             amount=1000,  # amount in cents, again
             currency="usd",
             card=token,
-            description=email
+            description=email  # arbitrary information regarding purchase
         )
     except stripe.CardError, e:
       # The card has been declined
@@ -43,6 +43,13 @@ def main():
     return redirect('index.html')
 
 
+@app.route('/v1/test/charges', methods=['POST', 'GET'])
+def list_charges():
+    return render_template('list.html')
+
+    charge_list = stripe.Charge.all(count=20)
+
+    print charge_list
 # @app.route('/about/')
 # def about():
 #     """Render the website's about page."""

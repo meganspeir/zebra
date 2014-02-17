@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+{% block js %}
+{% endblock %}
+
+
+{% block main %}
+  <head>
+    <title>Fruit Stripe!</title>
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+  </head>
+  <body>
+    <title>{% block title %}{% endblock %}</title>
+    <ul>
+    {% for charge in charge_list %}
+      <li>{{ charge.description }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
