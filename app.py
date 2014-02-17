@@ -7,6 +7,7 @@ This file creates your application.
 """
 
 # import os
+from config import PRIVATE
 from flask import Flask, render_template, request, redirect, url_for
 import stripe
 
@@ -16,16 +17,12 @@ app = Flask(__name__)
 
 
 ###
-# Routing for your application.
+# Application routes.
 ###
 
 @app.route('/', methods=['POST', 'GET'])
 def main():
     return render_template('index.html')
-
-    # Set secret key: remember to change this to your live secret key in production
-    # See your keys here https://manage.stripe.com/account
-    stripe.api_key = "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
 
     # Get the credit card details submitted by the form
     token = request.POST['stripeToken']

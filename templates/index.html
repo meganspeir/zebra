@@ -1,20 +1,12 @@
 <!DOCTYPE html>
-<!--
-  The <html> tag tells the Browser - this is an HTML page
-  The <head> tag tells the Browser meta information about the page
-  The <title> tag twlls the Browser the name of this page, and it's the text that shows up in the tab
-  The <link rel="stylesheet" href="css/main.css"> tells the Browser where to find the CSS file
-  The <link href="http://fonts.googleapis.com/... tag tells the Browser to go look in Google's font library for our fonts
--->
 <html>
   <head>
     <title>Fruit Stripe!</title>
     <link rel="stylesheet" href="static/css/bootstrap.css">
     <link href="http://fonts.googleapis.com/css?family=Alfa+Slab+One|Permanent+Marker|Nova+Mono|Monoton|Press+Start+2P|Bowlby+One+SC|Cedarville+Cursive" rel="stylesheet" type="text/css">
-
   </head>
   <!--
-    If you want to change the background of the entire page change "hearts-gray" to the stylename you want!
+    If you want to change the background of the entire page add an img to the class quotes below!
   -->
   <body class="">
     <!--
@@ -42,7 +34,7 @@
         <!--
           You can change the text inside the <h1> tags or add new HTML tags of your own!
         -->
-        <h1 class="">Fruit Stripe Gum Fanatic</h1>
+        <h1 class="">Fruit Stripe Fanatic</h1>
       </div>
       <div class="">
         <!--
@@ -51,15 +43,15 @@
         <p class=""></p>
       </div>
     </div>
-    <script src="static/javascripts/jquery.js"></script>
+    <script src="static/js/jquery.js"></script>
     <!-- <script src="static/javascripts/card-flip.js"></script> -->
     <form action="" method="POST">
       <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-        data-image="/square-image.png"
-        data-name="Demo Site"
-        data-description="2 widgets ($10.00)"
+        data-image="static/img/fruitstripegum.jpg"
+        data-name="Fruit Stripe Fanatic"
+        data-description="($10.00)"
         data-amount="1000">
       </script>
     </form>
