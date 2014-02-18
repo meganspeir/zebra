@@ -8,14 +8,25 @@ This file creates your application.
 
 import os
 # from config import PRIVATE
-from flask import Flask, render_template, redirect, url_for
-from requests import request
+from flask import Flask, render_template, redirect, url_for, request
+# from flask.globals import request
+# import requests
 import stripe
 
+# SECRET_KEY = os.environ.get('SECRET_KEY', 'this_should_be_configured')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+# print SECRET_KEY
+# PUBLISHABLE_KEY = os.environ.get('PUBLISHABLE_KEY')
+# stripe.api_key = SECRET_KEY
+
+stripe_keys = {
+    'secret_key': os.environ.get['SECRET_KEY'],
+    'publishable_key': os.environ.get['PUBLISHABLE_KEY']
+}
+
+stripe.api_key = stripe_keys['secret_key']
 
 app = Flask(__name__)
-
-SECRET_KEY = os.environ.get('SECRET_KEY', 'this_should_be_configured')
 
 
 ###
@@ -23,32 +34,57 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'this_should_be_configured')
 ###
 
 @app.route('/')
-def main():
-    return render_template('index.html')
-    # return redirect("/index.html")
-
+def index():
+    return render_template('index.html', key='PUBLISHABLE_KEY')
 
 @app.route('/charge', methods=['POST'])
-def charge_card():
-    stripe.api_key = SECRET_KEY
+def charge():
+    # Amount in cents
+    amount = 500
+
+    customer = stripe.Customer.create(
+        email='customer@example.com',
+        card=request.form['stripeToken']
+    )
+
+    charge = stripe.Charge.create(
+        customer=customer.id,
+        amount=amount,
+        currency='usd',
+        description='Flask Charge'
+    )
+
+    return render_template('charge.html', amount=amount)
+
+# @app.route('/')
+# def main():
+#     return render_template('index.html')
+#     # return redirect("/index.html")
+#
+#
+# @app.route('/charge', methods=['GET', 'POST'])
+# def charge_card():
+#     stripe.api_key = SECRET_KEY
 
     # Get the credit card details submitted by the form
 
-    token = request.POST['stripeToken']
-    email = request.POST['stripeEmail']
-    # Create the charge on Stripe's servers - this will charge the user's card
-    try:
-        charge = stripe.Charge.create(
-            amount=1000,  # amount in cents, again
-            currency="usd",
-            card=token,
-            description=email
-        )
-    except stripe.CardError, e:
-      # The card has been declined
-        pass
-
-    return redirect('/')
+    # token = request.POST['stripeToken']
+    # print token
+#    print token
+#    email = request.POST['stripeEmail']
+#    # Create the charge on Stripe's servers - this will charge the user's card
+#    try:
+#        charge = stripe.Charge.create(
+#            amount=1000,  # amount in cents, again
+#            currency="usd",
+#            card=token,
+#            description=email
+#        )
+#    except stripe.CardError, e:
+#      # The card has been declined
+#        pass
+#
+#    return redirect('/')
 
 
 @app.route('/v1/test/charges', methods=['POST', 'GET'])
