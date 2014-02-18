@@ -20,8 +20,8 @@ import stripe
 # stripe.api_key = SECRET_KEY
 
 stripe_keys = {
-    'secret_key': os.environ.get['SECRET_KEY'],
-    'publishable_key': os.environ.get['PUBLISHABLE_KEY']
+    'secret_key': os.environ['SECRET_KEY'],
+    'publishable_key': os.environ['PUBLISHABLE_KEY']
 }
 
 stripe.api_key = stripe_keys['secret_key']
