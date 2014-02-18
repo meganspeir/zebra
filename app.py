@@ -22,13 +22,13 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'this_should_be_configured')
 # Application routes.
 ###
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/')
 def main():
     return render_template('index.html')
     # return redirect("/index.html")
 
 
-@app.route('/charge', methods=['POST', 'GET'])
+@app.route('/charge')
 def charge_card():
     stripe.api_key = SECRET_KEY
 
