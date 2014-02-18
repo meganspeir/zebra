@@ -28,7 +28,7 @@ def main():
     # return redirect("/index.html")
 
 
-@app.route('/charge')
+@app.route('/charge', methods=['POST'])
 def charge_card():
     stripe.api_key = SECRET_KEY
 
