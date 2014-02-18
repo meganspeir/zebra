@@ -6,8 +6,8 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
-# import os
-from config import PRIVATE
+import os
+# from config import PRIVATE
 from flask import Flask, render_template, redirect, url_for
 from requests import request
 import stripe
@@ -15,7 +15,7 @@ import stripe
 
 app = Flask(__name__)
 
-# app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configured')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'this_should_be_configured')
 
 
 ###
@@ -30,7 +30,7 @@ def main():
 
 @app.route('/charge', methods=['POST', 'GET'])
 def charge_card():
-    stripe.api_key = PRIVATE
+    stripe.api_key = SECRET_KEY
 
     # Get the credit card details submitted by the form
 
