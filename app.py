@@ -8,8 +8,10 @@ This file creates your application.
 
 # import os
 from config import PRIVATE
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, redirect, url_for
+from requests import request
 import stripe
+
 
 app = Flask(__name__)
 
@@ -23,24 +25,30 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def main():
     return render_template('index.html')
+    # return redirect("/index.html")
+
+
+@app.route('/charge', methods=['POST', 'GET'])
+def charge_card():
+    stripe.api_key = PRIVATE
 
     # Get the credit card details submitted by the form
-    token = request.POST['stripeToken']
-    email = request.GET['stripeEmail']
 
+    token = request.POST['stripeToken']
+    email = request.POST['stripeEmail']
     # Create the charge on Stripe's servers - this will charge the user's card
     try:
         charge = stripe.Charge.create(
             amount=1000,  # amount in cents, again
             currency="usd",
             card=token,
-            description=email  # arbitrary information regarding purchase
+            description=email
         )
     except stripe.CardError, e:
       # The card has been declined
         pass
 
-    return redirect('index.html')
+    return redirect('/')
 
 
 @app.route('/v1/test/charges', methods=['POST', 'GET'])
