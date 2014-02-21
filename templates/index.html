@@ -1,59 +1,49 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Fruit Stripe!</title>
-    <link rel="stylesheet" href="/static/css/bootstrap.css">
-    <link href="http://fonts.googleapis.com/css?family=Alfa+Slab+One|Permanent+Marker|Nova+Mono|Monoton|Press+Start+2P|Bowlby+One+SC|Cedarville+Cursive" rel="stylesheet" type="text/css">
-  </head>
-  <!--
-    If you want to change the background of the entire page add an img to the class quotes below!
-  -->
-  <body class="">
-    <!--
-      If you want to change the background of a second container add a new style here.
-    Example:
-    <div class="card-container stylename">
-    -->
-    <div class="">
-      <!--
-        This is a comment! It won't appear in the Browser.
-        There are two divs on this page both with the class name "card"
-        The first <div> is the front of the card
-        The second <div> is the back of the card
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Fruit Stripe!</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        Note: Remember you can have more than one class name per tag!
-        Just remember to put a space in between class names
+        <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
-        Example:
-        <div class="container">
+        <link rel="stylesheet" href="/static/stylesheets/bootstrap.css">
+        <script src="scripts/vendor/modernizr-2.7.1.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
 
-        or:
-        <p class="red sans-serif center">Title</p>
-      -->
-      <div class="">
-        <!--
-          You can change the text inside the <h1> tags or add new HTML tags of your own!
-        -->
-        <h1 class="">Fruit Stripe Fanatic</h1>
-      </div>
-      <div class="">
-        <!--
-          You can change the text inside the <p> tags or add new HTML tags of your own!
-        -->
-        <p class=""></p>
-      </div>
-    </div>
-    <script src="/static/js/jquery.js"></script>
-    <!-- <script src="static/javascripts/card-flip.js"></script> -->
-    <form action="/charge" method="POST">
-      <script
-        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="{{ key }}"
-        data-image="static/img/fruitstripegum.jpg"
-        data-name="Fruit Stripe Fanatic"
-        data-description="($10.00)"
-        data-amount="1000">
-      </script>
-    </form>
-  </body>
+        <!-- Add your site or application content here -->
+        <h1>Fruit Stripe Fanatic!</h1>
+        <script src="/static/scripts/jquery.js"></script>
+        <form action="/charge" method="POST">
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="{{ key }}"
+            data-image="static/images/fruitstripegum.jpg"
+            data-name="Fruit Stripe Fanatic"
+            data-description="($10.00)"
+            data-amount="1000">
+          </script>
+        </form>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="scripts/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+        <script src="scripts/plugins.js"></script>
+        <script src="scripts/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+    </body>
 </html>
