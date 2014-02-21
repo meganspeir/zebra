@@ -53,3 +53,12 @@ update:
 	@mv update/img/* static/img
 	@mv update/js/* static/js
 	@echo "\n${BOLD}Update static files...  ${NORM}${CHECK}\n"
+
+# env:
+# 	export SECRET_KEY=sk_test_qIZNSFavvoicEVe25zGELrHd
+# 	export PUBLISHABLE_KEY=pk_test_zAzppDzHSLlDZOIUmwGhKrvs
+#
+# run:
+# 	export SETTINGS=/Users/MeganHoak/Projects/zebra/.env
+# 	sudo python app.py
+

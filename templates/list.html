@@ -1,20 +1,11 @@
-{% extends "base.html" %}
-
-
-{% block js %}
-{% endblock %}
-
-
-{% block main %}
+{% block content %}
   <head>
-    <title>Fruit Stripe!</title>
-    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <title>Fruit Stripe Fanatic!</title>
   </head>
   <body>
-    <title>{% block title %}{% endblock %}</title>
+    <h1>Fruit Stripe Fanatic Customers</h1>
     <ul>
-    {% for charge in charge_list %}
-      <li>{{ charge.description }}</li>
-    {% endfor %}
+      <p>{{ charge_list }}</p>
     </ul>
 {% endblock %}
+
