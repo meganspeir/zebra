@@ -8,15 +8,9 @@ from flask import Flask, render_template, redirect, url_for, request
 import json
 import stripe
 
-# stripe_keys = {
-#     'secret_key': os.environ['SECRET_KEY'],
-#     'publishable_key': os.environ['PUBLISHABLE_KEY']
-# }
-
-# For development only...because ugh env.
 stripe_keys = {
-    'secret_key': 'sk_test_qIZNSFavvoicEVe25zGELrHd',
-    'publishable_key': 'pk_test_zAzppDzHSLlDZOIUmwGhKrvs'
+    'secret_key': os.environ['SECRET_KEY'],
+    'publishable_key': os.environ['PUBLISHABLE_KEY']
 }
 
 stripe.api_key = stripe_keys['secret_key']
